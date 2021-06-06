@@ -7,7 +7,6 @@ from config.Config import Config
 
 config = Config()
 
-
 metadata = MetaData(schema="public")
 
 style = Table('style', metadata,
