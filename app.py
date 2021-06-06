@@ -76,7 +76,7 @@ def run_augmentations(df=None, n_of_samples=10):
 
         #write image to file
         cv2.imwrite(transformed_img_path, transformed_img[:,:,::-1]) #rgb to bgr
-    print("!! DONE | IMAGE AUGMENTATION !!")
+    print("!! DONE | IMAGE AUGMENTATION | AUGMENTED IMAGED WRITTEN TO: {config.augmented_images_dir}!!")
         
 def run_model_inference(df=None, n_of_samples=10):
     print("!! RUNNING MODEL INFERENCE !!")
@@ -111,8 +111,8 @@ def run_model_inference(df=None, n_of_samples=10):
         new_json_path = os.path.join(config.augmented_images_dir, row['file_url'].split('/')[-1]+'.json')
 
         #write data to new json
-        row.to_json(new_json_path)     
-    print("!! DONE | MODEL INFERENCE !!")
+        row.to_json(new_json_path)
+    print(f"!! DONE | MODEL INFERENCE | JSON FILES WITH NEW VALUES WRITTEN TO: {config.augmented_images_dir}!!")
 
 def run():
     #run query

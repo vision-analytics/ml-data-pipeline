@@ -1,0 +1,13 @@
+version: "3.3"
+services:
+  postgres:
+    image: postgres
+    restart: always
+    container_name: mldp-pg
+    environment:
+        POSTGRES_PASSWORD: pass123
+        PGDATA: /opt/pgsql/data
+    volumes:
+        - ./pv/pgdata/:/opt/pgsql/data
+    ports:
+        - "5432:5432"

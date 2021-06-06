@@ -23,7 +23,7 @@ pip3 install -r requirements.txt
 ## run postgres (docker)
 ```
 mkdir pv # create directory to keep persistent data(postgres)
-docker run --rm --name mldp-pg -e POSTGRES_PASSWORD=pass123 -d -p 5432:5432 -v pv:/var/lib/postgresql/data postgres
+docker-compose up
 ```
 
 ## setup env
