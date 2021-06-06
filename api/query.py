@@ -69,7 +69,7 @@ def run_query(query_obj=None, filters=None, limit=None, upload_to_s3=False):
 
     time_elapsed = time.time() - start_time
     print(f"DONE! {run_id} | it took {time_elapsed} seconds")
-    return items
+    return run_id, items
 
 
 def sample_query_1():
