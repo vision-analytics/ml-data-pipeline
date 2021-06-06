@@ -26,10 +26,15 @@ mkdir pv # create directory to keep persistent data(postgres)
 docker run --rm --name mldp-pg -e POSTGRES_PASSWORD=pass123 -d -p 5432:5432 -v pv:/var/lib/postgresql/data postgres
 ```
 
-## Export Data to DB
+## setup env
 ```
 cd <app root folder>
+
 export PYTHONPATH="$PWD"
+export AWS_ACCESS_KEY_ID=""
+export AWS_SECRET_ACCESS_KEY=""
+export AWS_REGION_NAME=""
+export AWS_BUCKET_NAME=""
 ```
 
 ### init db
