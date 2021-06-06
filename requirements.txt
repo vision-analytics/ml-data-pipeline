@@ -2,6 +2,7 @@ albumentations
 boto3
 opencv-python
 pandas
+psycopg2
 pydantic
 sqlalchemy
 torch
