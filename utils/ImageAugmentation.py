@@ -1,3 +1,11 @@
+"""Class for image augmentations
+
+takes image as input and augment it
+
+single augmentation added for this project
+
+"""
+
 import albumentations
 
 class ImageAugmentation:

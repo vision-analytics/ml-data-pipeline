@@ -1,3 +1,11 @@
+"""Model Inference Class
+
+prepares model for inference and let other function to consume model with only single init.
+
+predict function is used in other modules
+
+"""
+
 import os
 
 import numpy as np

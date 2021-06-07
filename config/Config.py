@@ -1,10 +1,17 @@
+"""Settings file
+
+it keeps all configuration parameters for application
+some of them are taken from environment variables
+
+"""
+
 import os
 import pandas as pd
 from pydantic import BaseSettings
 from pydantic.tools import T
 
 class Config(BaseSettings):
-
+    
     app_root: str = "/app"
     working_dir: str = "/pv"
 

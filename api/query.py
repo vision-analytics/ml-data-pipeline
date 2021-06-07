@@ -22,10 +22,23 @@ session = Session()
 s3_handler = S3Handler()
 
 def generate_uuid():
+    """ Generate uuid for each query"""
     return str(uuid.uuid4())
 
 def export_to_s3(exp_id, data):
+    """Export data to s3 for given experiment id
 
+    Parameters
+    ----------
+    exp_id : str
+        generated uuid
+    data : obj, 
+        result of query
+
+    Returns
+    -------
+    
+    """
     out_dir = os.path.join(config.AWS_OUT_DIR, exp_id) # folder to keep files in s3
 
     # write to json
@@ -58,6 +71,26 @@ def export_to_s3(exp_id, data):
         s3_handler.write_json_to_s3_file(json_data, s3_obj_key_json)
 
 def run_query(query_obj=None, filters=None, limit=None, upload_to_s3=False):
+    """Gets and prints the spreadsheet's header columns
+
+    Parameters
+    ----------
+    query_obj : obj
+        Query object of sqlalchemy
+    filters : obj
+        combined filters (Filter object of sqlalchemy)
+    limit : int
+        result row limit. 
+    upload_to_s3 : bool, optional
+        A flag used to upload data to s3 (default is False)
+
+    Returns
+    -------
+    run_id, 
+        generated run_id for each run
+    items,
+        results
+    """
     # query
     start_time = time.time()
     run_id = generate_uuid()

@@ -1,3 +1,10 @@
+"""Main Steps are organized here
+
+run all steps in order.
+
+it is also consumed by celery task
+
+"""
 import json
 import os
 import warnings
@@ -19,6 +26,14 @@ from utils.S3Handler import S3Handler
 config = Config()
 
 def run_new_query():
+    """TODO: update docs
+
+    Parameters
+    ----------
+
+    Returns
+    -------
+    """
     print("!! RUNNING QUERY AND UPLOADING RESULTS TO s3 !!")
     # select filters
     filters=[Style.gender == "Unisex",
@@ -31,6 +46,14 @@ def run_new_query():
 
 
 def read_query_results(run_id):
+    """TODO: update docs
+
+    Parameters
+    ----------
+
+    Returns
+    -------
+    """
     print("!! READING QUERY RESULTS FROM s3 !!")
     s3_handler = S3Handler()
 
@@ -54,6 +77,14 @@ def read_query_results(run_id):
     return df
         
 def run_augmentations(df=None, n_of_samples=10):
+    """TODO: update docs
+
+    Parameters
+    ----------
+
+    Returns
+    -------
+    """
     print("!! RUNNING IMAGE AUGMENTATION !!")
 
     s3_handler = S3Handler()
@@ -94,6 +125,14 @@ def run_augmentations(df=None, n_of_samples=10):
     print(f"!! DONE | IMAGE AUGMENTATION | AUGMENTED IMAGES BOTH UPLOADED TO S3 AND EXPORTED TO: {config.augmented_images_dir}!!")
         
 def run_model_inference(df=None, n_of_samples=10):
+    """TODO: update docs
+
+    Parameters
+    ----------
+
+    Returns
+    -------
+    """
     print("!! RUNNING MODEL INFERENCE !!")
 
     def rows_to_json_and_s3(x):

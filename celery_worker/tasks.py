@@ -1,3 +1,12 @@
+""" Task definitions for Celery
+You can add new tasks like following one:
+
+@app.task
+def add(x, y):
+    return x + y
+
+"""
+
 import logging
 import os
 

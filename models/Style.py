@@ -1,3 +1,9 @@
+"""Sqlalchemy Table object
+
+all table columns are defined in this file
+
+"""
+
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 

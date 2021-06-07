@@ -64,6 +64,7 @@ docker-compose exec celery_worker /bin/bash
 # submit sample task
 -> python3 init_task.py
 
+# check task status on ui -> http://localhost:5555/
 
 # to run unit tests
 -> pytest tests/unit_test.py

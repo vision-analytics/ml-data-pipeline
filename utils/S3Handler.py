@@ -1,3 +1,14 @@
+"""S3 Handler Class
+
+all s3 operations are defined here
+
+uploading file or reading file from s3 ...
+
+required params are read from config
+
+"""
+
+
 import json
 
 import boto3
