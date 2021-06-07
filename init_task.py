@@ -1,4 +1,6 @@
-"""TODO: update docs
+""" init module for submitting new ASYNC task to Celery
+
+requires celery_worker.tasks module
 
 """
 

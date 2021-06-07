@@ -22,6 +22,8 @@ services:
       - .env
     volumes:
       - ./pv/:/pv/
+    ports:
+      - "8888:8888"
     #command: celery -A mysite worker --loglevel=info
     #command: ['celery', 'worker', '-A', 'app.app', '-l', 'info']
     entrypoint: celery -A celery_worker.tasks worker --loglevel=info

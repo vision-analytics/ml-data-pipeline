@@ -13,8 +13,9 @@ class TestMyCode(unittest.TestCase):
         # test running new query
         filters = [Style.gender == "Unisex", Style.articleType == "Watches", Style.year >= 2013]
         # query
-        items = query.run_query(Style, filters, limit=10, upload_to_s3=False)           
+        run_id, items = query.run_query(Style, filters, limit=10, upload_to_s3=False)           
         self.assertEqual(items.count(), 10)
+        self.assertIsInstance(run_id, str)
 
     def test_model(self):
         # test model inference with random input

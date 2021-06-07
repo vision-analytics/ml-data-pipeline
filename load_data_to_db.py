@@ -1,4 +1,11 @@
-"""TODO: update docs
+"""Data loader script
+
+steps:
+reads data from csv
+drop nan values 
+load data to local postgres db
+
+requires config.Config for params
 
 """
 import os

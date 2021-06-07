@@ -45,6 +45,10 @@ docker-compose exec celery_worker /bin/bash
 
 # check task status on ui -> http://localhost:5555/
 
+#run jupyter notebooks (for both eda and )
+jupyter notebook notebooks --allow-root --ip='*' --NotebookApp.token='' --NotebookApp.password=''
+# -> open browser and go to -> http://localhost:8888/
+
 # to run unit tests
 -> pytest tests/unit_test.py
 

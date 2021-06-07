@@ -1,4 +1,10 @@
-"""TODO: update docs
+"""initialize database
+
+create tables with given details
+
+uses sqlalchemy create engine and sessionmaker 
+
+requires config.Config module for database connection string
 
 """
 

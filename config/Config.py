@@ -1,22 +1,16 @@
-"""Settings file
-
-it keeps all configuration parameters for application
-some of them are taken from environment variables
-
-"""
-
 import os
 import pandas as pd
 from pydantic import BaseSettings
 from pydantic.tools import T
 
 class Config(BaseSettings):
-    
+
     app_root: str = "/app"
     working_dir: str = "/pv"
+    
 
     #DB PARAMS
-    db_host: str = "postgres" #localhost"
+    db_host: str = os.environ.get("POSTGRES_HOST", "postgres")#localhost
     db_port: int = 5432
     db_name: str = "postgres"
     db_user: str = "postgres"
