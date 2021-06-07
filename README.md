@@ -2,26 +2,48 @@
 ## ml-data-pipeline
 
 
+```
+project steps
+- setup database (done!)
+
+- load data from csv to database (after preprocessing) (done!)
+
+- obtain subset of data with queries, generate json files and upload to s3 (seperate directories for each run) (done!)
+
+- run exploratory data analysis (w. jupyter notebook) (done!)
+
+- apply augmentations for subsets (done!)
+
+- run pretrained model on subset and add new values to metadata(json) (done!)
+
+- used celery for task management (ui: flower, broker: redis)
+```
+
 # &nbsp;
 
 # Usage
 
 ```
 
-#start services
+# start services
 docker compose up
 
-#open interactive shell inside container
+# open interactive shell(container) to run following commands
 docker-compose exec celery_worker /bin/bash
 
-#init db
+# init db
 -> python3 init_db.py
 
-#export data from csv to db
+# export data from csv to db
 -> python3 load_data_to_db.py
 
-#submit sample task
+# submit sample task
 -> python3 init_task.py
+
+
+# to run unit tests
+-> pytest tests/unit_test.py
+
 
 ```
 
@@ -64,20 +86,48 @@ Structure:
 +- requirements.txt
 ```
 
+# &nbsp;
+
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
 
 # &nbsp;
 
-# Work In Progress
+#### Tested with following environments
 
+##### Ubuntu 18.04 & python3.6
+
+##### macOS Mojave 10.14.5 & python 3.6
+
+
+# &nbsp;
+
+
+
+## #TODO:
+### return run_id for tasks
 ### check deep-fashion-net model weights
 ### !need to increase performance for the s3 operations. 
-### TODO: Use aws cli with batch operations
+#### Use aws cli with batch operations
+```
+    batch data upload with AWS CLI tool
     
-    #*Note: current throughput 8-9 items/s 
-    #*batch data upload with AWS CLI tool
-    ```
     aws s3 sync local_folder s3://bucket-name
-    ```
+```
+## 
+
+
+# &nbsp;
+
+# &nbsp;
+
+
+
+# DRAFTS NOTES
+
 
 # 1 - setup database
 ```
@@ -111,31 +161,7 @@ Structure:
 jupyter notebook notebooks/exp_data_analysis.ipynb
 ```
 
-
-### bonus - celery (will be implemented soon!)
-
 # &nbsp;
-
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
-
-# &nbsp;
-
-#### Tested with following environments
-
-##### Ubuntu 18.04 & python3.6
-
-##### macOS Mojave 10.14.5 & python 3.6
-
-
-# &nbsp;
-# &nbsp;
-# &nbsp;
-# &nbsp;
-
 
 # Old Setup Instructions(not used anymore)
 

@@ -5,10 +5,11 @@ from pydantic.tools import T
 
 class Config(BaseSettings):
 
-    working_dir = "/pv"
+    app_root: str = "/app"
+    working_dir: str = "/pv"
 
     #DB PARAMS
-    db_host: str = "postgres"
+    db_host: str = "postgres" #localhost"
     db_port: int = 5432
     db_name: str = "postgres"
     db_user: str = "postgres"

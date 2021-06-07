@@ -2,9 +2,9 @@ import unittest
 import torch
 
 from api import query
+from celery_worker import tasks
 from models.Style import Style
 from utils.ModelInference import ModelInference
-
 
 
 class TestMyCode(unittest.TestCase):
@@ -21,3 +21,9 @@ class TestMyCode(unittest.TestCase):
         out = model.model(image)
         self.assertEqual(len(out[0][0]), 1000)
         self.assertEqual(len(out[1][0]), 50)
+
+    def test_celery_sample_task(self):
+        t = tasks.add.apply(args=[1, 2])
+        self.assertEqual(t.status, "SUCCESS")
+        self.assertEqual(t.result, 3)
+

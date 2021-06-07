@@ -10,6 +10,7 @@ pandas
 Pillow
 psycopg2
 pydantic
+pytest
 pytz==2018.3
 #redis
 redis==2.10.6

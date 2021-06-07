@@ -3,4 +3,4 @@ import os
 from celery_worker import tasks
 
 if __name__ == "__main__":
-    tasks.sample_run.apply(args=[]) 
+    tasks.sample_run.apply_async(args=[]) 

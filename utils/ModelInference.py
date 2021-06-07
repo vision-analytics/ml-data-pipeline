@@ -27,15 +27,15 @@ class ModelInference:
         self.model_category_cloth = pd.read_csv(os.environ.get('PYTHONPATH')+'/config/list_category_cloth.txt', delimiter=r'[ \t]{2,}', header=1, usecols=["category_name", "category_type"])
         self.model_attr_cloth = pd.read_csv(os.environ.get('PYTHONPATH')+'/config/list_attr_cloth.txt', delimiter=r'[ \t]{2,}', header=1, usecols=["attribute_name", "attribute_type"])
 
-    def image_loader(self, image_path):
-        image = Image.open(image_path)
+    def image_loader(self, image):
+        image = Image.fromarray(image)
         image = self.loader(image).float()
         image = torch.autograd.Variable(image, requires_grad=True)
         return image.unsqueeze(0)
 
 
-    def predict(self, image_path):
-        inputs = self.image_loader(image_path)
+    def predict(self, image):
+        inputs = self.image_loader(image)
         #inputs = inputs.to(self.device)
         output = self.model(inputs)
         

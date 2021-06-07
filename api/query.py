@@ -30,6 +30,14 @@ def export_to_s3(exp_id, data):
 
     # write to json
     for item in tqdm.tqdm(data):
+
+        s3_obj_key_img = f"{out_dir}/{item.id}.jpg"
+        s3_obj_key_json = f"{out_dir}/{item.id}.json"
+
+        #upload image to s3
+        s3_full_url = s3_handler.upload_file(item.file_url, s3_obj_key_img)
+
+        #prepare json
         json_data = {    
             'id': item.id,
             'gender': item.gender,
@@ -41,12 +49,13 @@ def export_to_s3(exp_id, data):
             'year': item.year,
             'usage': item.usage,
             'productDisplayName': item.productDisplayName,
-            'file_url': item.file_url
+            'local_url': item.file_url,
+            's3_url': s3_obj_key_img,
+            's3_full_url': s3_full_url
             }
-        #TODO: upload image if need
-        #s3_handler.upload_file(item.file_url, f"{out_dir}/{item.id}.jpg"):
-
-        s3_handler.write_json_to_s3_file(json_data, f"{out_dir}/{item.id}.json")
+        
+        #write json to s3 file
+        s3_handler.write_json_to_s3_file(json_data, s3_obj_key_json)
 
 def run_query(query_obj=None, filters=None, limit=None, upload_to_s3=False):
     # query
@@ -91,7 +100,7 @@ def sample_query_2():
 
 
 def sample_query_3():
-    #all types of black unisex Tshirts before 2013
+    #all types of unisex watches before 2013
     
     filters = [Style.gender == "Unisex", Style.articleType == "Watches", Style.year >= 2013]
 
