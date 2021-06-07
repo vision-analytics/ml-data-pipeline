@@ -32,6 +32,8 @@ Structure:
 .
 +- api
 |  - query.py - query operations and data upload
++- celery_worker
+|  - tasks.py - celery task definitions
 +- config
 |  - Config.py - configuration module for keeping variables
 |  - list_attr_cloth.txt - Classes for deepfashion model
@@ -56,6 +58,7 @@ Structure:
 |  - S3Handler.py - s3 operations class
 +- app.py 
 +- init_db.py - create database and tables
++- init_task.py - submit sample task
 +- load_data_to_db.py - load data from csv to postgres
 +- README.md 
 +- requirements.txt
