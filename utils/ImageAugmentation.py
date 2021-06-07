@@ -1,5 +1,6 @@
 import albumentations
-import cv2
+import numpy as np
+from PIL import Image
 
 
 class ImageAugmentation:
@@ -7,7 +8,7 @@ class ImageAugmentation:
         pass
 
     def random_resized_crop(self, image_path, height, width, scale):
-        img = cv2.imread(image_path)[:,:,::-1] #bgr to rgb
+        img = np.asarray(Image.open(image_path))
         fnc = albumentations.crops.transforms.RandomResizedCrop(
             height=height, 
             width=width, 

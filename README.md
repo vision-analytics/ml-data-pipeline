@@ -4,57 +4,28 @@
 
 # &nbsp;
 
-## Installation
-
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install requirements.
-
-```bash
-python3 -m venv test-env #create new environment
-source test-env/bin/activate #activate environment
-pip3 install -r requirements.txt
-```
-
-# &nbsp;
-
 # Usage
 
-## 1 - Setup DB
-
-## run postgres (docker)
-```
-mkdir pv # create directory to keep persistent data(postgres)
-docker-compose up
 ```
 
-## setup env
-```
-cd <app root folder>
+#start services
+docker compose up
 
-export PYTHONPATH="$PWD"
-export AWS_ACCESS_KEY_ID=""
-export AWS_SECRET_ACCESS_KEY=""
-export AWS_REGION_NAME=""
-export AWS_BUCKET_NAME=""
-```
+#open interactive shell inside container
+docker-compose exec celery_worker /bin/bash
 
-### init db
-```
-python3 init_db.py
-```
+#init db
+-> python3 init_db.py
 
-### load data to db
-```
-python3 load_data_to_db.py
-```
+#export data from csv to db
+-> python3 load_data_to_db.py
 
-### run app.py to go over all steps in order. Alternatively, you can use notebooks/run_query_and_perform_basic_data_analysis.ipynb.
-```
-python3 app.py
+#submit sample task
+-> python3 init_task.py
+
 ```
 
 # &nbsp;
-
-
 
 Structure:
 ```
@@ -65,16 +36,17 @@ Structure:
 |  - Config.py - configuration module for keeping variables
 |  - list_attr_cloth.txt - Classes for deepfashion model
 |  - list_category_cloth.txt - Classes for deepfashion model
-+- data
-|  +- fashion-small (!need to be downloaded from kaggle!)
-|    +- images
-|    - styles.csv
 +- models
 |  - Style.py - table structure for sqlalchemy
 +- notebooks
 |  - exp_data_analysis.ipynb - (extra) data analysis for all dataset
 |  - run_query_and_perform_basic_data_analysis.ipynb - equivalent to app.py. to run all steps in interactive mode
-+- pv - directory to keep persistent data (Docker)
++- pv- directory to keep persistent data (Docker)
+|  +- augmented (all augmented images and json files will be written here)
+|  +- data  
+|    +- fashion-small (!need to be downloaded from kaggle!)
+|       +- images
+|       +- styles.csv
 +- tests
 |   - unit_test.py - Unit tests for app
 +- utils
@@ -94,8 +66,7 @@ Structure:
 
 # Work In Progress
 
-### deep-fashion-net model weights
-### celery implementation
+### check deep-fashion-net model weights
 ### !need to increase performance for the s3 operations. 
 ### TODO: Use aws cli with batch operations
     
@@ -155,3 +126,58 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 ##### Ubuntu 18.04 & python3.6
 
 ##### macOS Mojave 10.14.5 & python 3.6
+
+
+# &nbsp;
+# &nbsp;
+# &nbsp;
+# &nbsp;
+
+
+# Old Setup Instructions(not used anymore)
+
+## Installation
+
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install requirements.
+
+```bash
+python3 -m venv test-env #create new environment
+source test-env/bin/activate #activate environment
+pip3 install -r requirements.txt
+```
+
+
+## run postgres (docker)
+```
+mkdir pv # create directory to keep persistent data(postgres)
+docker-compose up
+```
+
+## setup env
+```
+cd <app root folder>
+
+export PYTHONPATH="$PWD"
+export POSTGRES_PWD=""
+export AWS_ACCESS_KEY_ID=""
+export AWS_SECRET_ACCESS_KEY=""
+export AWS_REGION_NAME=""
+export AWS_BUCKET_NAME=""
+```
+
+### init db
+```
+python3 init_db.py
+```
+
+### load data to db
+```
+python3 load_data_to_db.py
+```
+
+### run app.py to go over all steps in order. Alternatively, you can use notebooks/run_query_and_perform_basic_data_analysis.ipynb.
+```
+python3 app.py
+```
+
+# &nbsp;

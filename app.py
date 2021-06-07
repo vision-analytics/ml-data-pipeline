@@ -1,9 +1,9 @@
 import json
 import os
 
-import cv2
 import matplotlib.pyplot as plt
 import pandas as pd
+from PIL import Image
 from sqlalchemy import and_
 
 from api import query
@@ -71,11 +71,12 @@ def run_augmentations(df=None, n_of_samples=10):
         transformed_img_path = os.path.join(config.augmented_images_dir, row['file_url'].split('/')[-1])
         
         #display image
-        plt.imshow(transformed_img)
-        plt.show()
+        #plt.imshow(transformed_img)
+        #plt.show()
 
         #write image to file
-        cv2.imwrite(transformed_img_path, transformed_img[:,:,::-1]) #rgb to bgr
+        im = Image.fromarray(transformed_img)
+        im.save(transformed_img_path)
     print("!! DONE | IMAGE AUGMENTATION | AUGMENTED IMAGED WRITTEN TO: {config.augmented_images_dir}!!")
         
 def run_model_inference(df=None, n_of_samples=10):
@@ -100,8 +101,8 @@ def run_model_inference(df=None, n_of_samples=10):
     for index, row in df.sample(n = 10).iterrows():
         print(index, row['id'])
         image_path = os.path.join(os.environ["PYTHONPATH"], row['file_url'])
-        plt.imshow(plt.imread(image_path))
-        plt.show()
+        #plt.imshow(plt.imread(image_path))
+        #plt.show()
         out = model.predict(image_path)
         df.loc[df.id == row['id'], 'fashionnet_category_name'] = out['category_name']
         df.loc[df.id == row['id'], 'fashionnet_category_type'] = out['category_type']
@@ -109,7 +110,7 @@ def run_model_inference(df=None, n_of_samples=10):
         df.loc[df.id == row['id'], 'fashionnet_attribute_type'] = out['attribute_type']
     
         new_json_path = os.path.join(config.augmented_images_dir, row['file_url'].split('/')[-1]+'.json')
-
+        
         #write data to new json
         row.to_json(new_json_path)
     print(f"!! DONE | MODEL INFERENCE | JSON FILES WITH NEW VALUES WRITTEN TO: {config.augmented_images_dir}!!")
