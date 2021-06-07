@@ -20,27 +20,6 @@ project steps
 
 ```
 
-Custom queries can be added in api/query.py like following ones:
-```
-    def sample_query_1():
-    #all types of male shoes years after 2012
-    
-    filters = [Style.gender == "Men", Style.subCategory == "Shoes", Style.year >= 2012]
-    ...
-
-
-    def sample_query_2():
-    #all types of woman bags for summer season
-
-    filters = [Style.gender == "Women", Style.subCategory == "Bags", Style.season == "Summer"]
-    ...
-
-def sample_query_3():
-    #all types of unisex watches before 2013
-    
-    filters = [Style.gender == "Unisex", Style.articleType == "Watches", Style.year >= 2013]
-    ...
-```
 
 # &nbsp;
 
@@ -70,6 +49,29 @@ docker-compose exec celery_worker /bin/bash
 -> pytest tests/unit_test.py
 
 
+```
+
+
+Custom queries can be added in api/query.py like following ones:
+```
+    def sample_query_1():
+    #all types of male shoes years after 2012
+    
+    filters = [Style.gender == "Men", Style.subCategory == "Shoes", Style.year >= 2012]
+    ...
+
+
+    def sample_query_2():
+    #all types of woman bags for summer season
+
+    filters = [Style.gender == "Women", Style.subCategory == "Bags", Style.season == "Summer"]
+    ...
+
+    def sample_query_3():
+    #all types of unisex watches before 2013
+    
+    filters = [Style.gender == "Unisex", Style.articleType == "Watches", Style.year >= 2013]
+    ...
 ```
 
 # &nbsp;
