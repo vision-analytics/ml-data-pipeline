@@ -119,17 +119,5 @@ Structure:
 
 # &nbsp;
 
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
-
-# &nbsp;
-
-### Tested with following environments
-
-##### Ubuntu 18.04 & python3.6
-
-##### macOS Mojave 10.14.5 & python 3.6
-
